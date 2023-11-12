@@ -23,14 +23,32 @@ public class User {
     private String surname;
     private String dni;
 
-     /*
-        ?OneToOne -UNIDIRECCIONAL- Usa anotación simple, puede usar propiedades como cascade,fetch,optional
-        ?Es posible utilizar el método 'addAccount' para facilitar el mergeo de entidades.
-        !Ejemplo
-        *   @OneToOne
-        *   private Account account;
-    */
+/*
+    ? Relación: OneToOne  
+    ? Tipo: UNIDIRECCIONAL  
+    ? Detalles: Usa anotación simple, puede usar propiedades como cascade,fetch,optional
+    !Ejemplo
+    *   @OneToOne
+    *   private Account account;
+*/
 
+/*
+    ? Relación: OneToOne  
+    ? Tipo: BIDIRECCIONAL  
+    ? Rol: Inversor.  
+    ? Propiedades: 
+    ?    *mappedBy: Indica el campo en la entidad inversa que mapea la relación, 
+    ?               eliminando la necesidad de una columna adicional en la base de datos.
+    ?    *cascade: Indica cómo se deben propagar las operaciones de persistencia desde la entidad propietaria 
+    ?              hacia la entidad relacionada  
+    ?    *fetch - LAZY: 
+    ?            + especifica la estrategia de recuperación de datos al cargar una entidad y sus relaciones
+    ?              asociadas desde la base de datos.
+    ?            + Retrasa la carga de la relación hasta que sea explícitamente accedida
+    !Ejemplo
+    *   @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    *   private Account account;
+*/
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Account account;

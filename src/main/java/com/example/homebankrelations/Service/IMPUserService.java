@@ -1,6 +1,5 @@
 package com.example.homebankrelations.Service;
 
-import com.example.homebankrelations.Model.Account;
 import com.example.homebankrelations.Model.User;
 import com.example.homebankrelations.Repository.UserRepo;
 
@@ -31,11 +30,6 @@ public class IMPUserService implements UserService {
     }
 
     @Override
-    public Optional<User> findByDNI(String dni) {
-        return ur.findByDni(dni);
-    }
-
-    @Override
     @Transactional
     public User saveOrUpd(User userNew) {
         if(userNew.getIdU() != null){
@@ -60,11 +54,5 @@ public class IMPUserService implements UserService {
     public boolean deleteById(Long id) {
         ur.deleteById(id);
     return ur.existsById(id);
-    }
-
-    @Override
-    public boolean deleteByDNI(String dni) {
-        ur.deleteByDni(dni);
-    return ur.existsByDni(dni);
     }
 }
