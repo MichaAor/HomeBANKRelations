@@ -53,14 +53,10 @@ public class Account {
     *       this.setUser(userAdd);
     *   }
 */
-    
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idU")
-    private User user;
 
-    public void addUser(Long idU){
-        User userAdd = new User();
-        userAdd.setIdU(idU);
-        this.setUser(userAdd);
-    }
+/*
+    ? Relación: ManyToOne 
+    ? Tipo: UNIDIRECCIONAL  
+    ? Detalle: No posee conocimiento de la otra entidad
+*/
 }

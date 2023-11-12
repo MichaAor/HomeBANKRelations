@@ -1,16 +1,19 @@
 package com.example.homebankrelations.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+// import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor
+// @NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -50,6 +53,40 @@ public class User {
     *   private Account account;
 */
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Account account;
+/*
+    ? Relación: OneToMany  
+    ? Tipo: UNIDIRECCIONAL  
+    ? Detalle: 
+    ?   +Se crea una tabla intermedia con las pk de ambas entidades. No afecta los métodos 'find'. 
+
+    !Ejemplo
+    !   Para un manejo mas eficiente, se inicializa el List en el constructor vació.
+    !   Formulo un método addAccount partiendo solamente de id del Account a asociar.
+    
+    *   @OneToMany
+    *   private List<Account> accounts;
+
+    *   public User(){
+    *       this.accounts = new ArrayList<>();
+    *   }
+
+    *   public void addAccount(Long idA){
+    *       Account acc = new Account();
+    *       acc.setIdA(idA);
+    *       this.getAccounts().add(acc);
+    *   }
+*/
+
+    @OneToMany
+    private List<Account> accounts;
+
+    public User(){
+        this.accounts = new ArrayList<>();
+    }
+
+    public void addAccount(Long idA){
+        Account acc = new Account();
+        acc.setIdA(idA);
+        this.getAccounts().add(acc);
+    }
 }
