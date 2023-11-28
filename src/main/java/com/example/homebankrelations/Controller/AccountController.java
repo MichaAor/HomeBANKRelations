@@ -30,9 +30,10 @@ public class AccountController {
         Optional<Account> accOpt = aS.findById(idA);
         return (accOpt.isPresent())? ResponseEntity.ok(accOpt.get()) : ResponseEntity.notFound().build();
     }
-/* 
-*   Save utilizado para OneToOne - BIDIRECCIONAL.
-?   Se utiliza junto al método 'adduser' correspondiente.
+    
+
+// *   Save utilizado para RELACIONES BIDIRECCIONALES.
+// ?   Se utiliza junto al método 'adduser' correspondiente.
 
     @PostMapping("/{idU}")
     ResponseEntity<Account> save(@RequestBody Account account,@PathVariable("idU")Long idU){
@@ -44,18 +45,21 @@ public class AccountController {
             return ResponseEntity.badRequest().build();
         }
     }
-*/
 
 
-    @PostMapping
-    ResponseEntity<Account> save(@RequestBody Account account){
-        Account accSaved = aS.saveOrUpd(account);
-        if(accSaved != null){
-            return ResponseEntity.status(HttpStatus.CREATED).body(accSaved);
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
-    }
+
+//*   Save utilizado para RELACIONES UNIDIRECCIONALES.
+
+    // @PostMapping
+    // ResponseEntity<Account> save(@RequestBody Account account){
+    //     Account accSaved = aS.saveOrUpd(account);
+    //     if(accSaved != null){
+    //         return ResponseEntity.status(HttpStatus.CREATED).body(accSaved);
+    //     }else{
+    //         return ResponseEntity.badRequest().build();
+    //     }
+    // }
+
 
     @PutMapping("/{idA}")
     ResponseEntity<Account> update(@RequestBody Account account,@PathVariable("idA")Long idA){

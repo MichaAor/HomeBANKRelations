@@ -77,7 +77,71 @@ public class User {
     *   }
 */
 
-    @OneToMany
+/*
+    ? Relación: OneToMany   
+    ? Tipo: BIDIRECCIONAL  
+    ? Rol: Inversor.  
+    ? Propiedades: 
+    ?    *mappedBy: Indica el campo en la entidad inversa que mapea la relación, 
+    ?               eliminando la necesidad de una columna adicional en la base de datos.  
+    ?    *fetch - LAZY: 
+    ?            + especifica la estrategia de recuperación de datos al cargar una entidad y sus relaciones
+    ?              asociadas desde la base de datos.
+    ?            + Retrasa la carga de la relación hasta que sea explícitamente accedida
+    ? Detalle: Para problemas de serializacion, consultar el modulo.
+
+    !Ejemplo
+    !   Para un manejo mas eficiente, se inicializa el List en el constructor vació.
+    !   Formulo un método addAccount asociando entidades partiendo solamente de id del Account.
+    !   Cerramos la relación con el uso de mappedBy, declarando USER como inversor de la relación.
+
+    *   @OneToMany(mappedBy = "user")
+    *   private List<Account> accounts;
+
+    *   public User(){
+    *       this.accounts = new ArrayList<>();
+    *   }
+
+    *   public void addAccount(Long idA){
+    *       Account acc = new Account();
+    *       acc.setIdA(idA);
+    *       this.getAccounts().add(acc);
+    *   }
+*/
+
+/*
+    ? Relación: ManyToMany   
+    ? Tipo: BIDIRECCIONAL  
+    ? Rol: Inversor.  
+    ? Propiedades: 
+    ?    *mappedBy: Indica el campo en la entidad inversa que mapea la relación, 
+    ?               eliminando la necesidad de una columna adicional en la base de datos.  
+    ?    *fetch - LAZY: 
+    ?            + especifica la estrategia de recuperación de datos al cargar una entidad y sus relaciones
+    ?              asociadas desde la base de datos.
+    ?            + Retrasa la carga de la relación hasta que sea explícitamente accedida
+    ? Detalle: Para problemas de serializacion, consultar el modulo.
+
+    !Ejemplo
+    !   Para un manejo mas eficiente, se inicializa el List en el constructor vació.
+    !   Formulo un método addAccount asociando entidades partiendo solamente de id del Account.
+    !   Cerramos la relación con el uso de mappedBy, declarando USER como inversor de la relación.
+
+    *   @OneToMany(mappedBy = "user")
+    *   private List<Account> accounts;
+
+    *   public User(){
+    *       this.accounts = new ArrayList<>();
+    *   }
+
+    *   public void addAccount(Long idA){
+    *       Account acc = new Account();
+    *       acc.setIdA(idA);
+    *       this.getAccounts().add(acc);
+    *   }
+*/
+
+    @ManyToMany(mappedBy = "users")
     private List<Account> accounts;
 
     public User(){

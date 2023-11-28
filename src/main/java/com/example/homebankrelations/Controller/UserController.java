@@ -34,10 +34,23 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+ //*  Save utilizado para RELACIÓN UNIDIRECCIONAL .
+  
+    // @PostMapping("/{idA}")
+    // ResponseEntity<User> save(@RequestBody User user,@PathVariable("idA")Long idA){
+    //     user.addAccount(idA);
+    //     User userSaved = us.saveOrUpd(user);
+    //     if(userSaved != null){
+    //         return ResponseEntity.status(HttpStatus.CREATED).body(userSaved);
+    //     }else{
+    //         return ResponseEntity.badRequest().build();
+    //     }
+    // }
 
-/*
- *  Save utilizado para OneToOne - BIDIRECCIONAL.
-!   DEBE PERSISTIR PRIMERO PARA LUEGO ASOCIAR A LA ENTIDAD ACCOUNT.
+     
+//*  Save utilizado para OneToOne - BIDIRECCIONAL.
+//!   DEBE PERSISTIR PRIMERO PARA LUEGO ASOCIAR A LA ENTIDAD ACCOUNT.
 
     @PostMapping
         ResponseEntity<User> save(@RequestBody User user){
@@ -48,19 +61,6 @@ public class UserController {
                 return ResponseEntity.badRequest().build();
             }
         }
-*/
-    
-
-    @PostMapping("/{idA}")
-    ResponseEntity<User> save(@RequestBody User user,@PathVariable("idA")Long idA){
-        user.addAccount(idA);
-        User userSaved = us.saveOrUpd(user);
-        if(userSaved != null){
-            return ResponseEntity.status(HttpStatus.CREATED).body(userSaved);
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
-    }
 
    @PutMapping("/{idU}")
    ResponseEntity<User> update(@RequestBody User user,@PathVariable("idU")Long idU){
